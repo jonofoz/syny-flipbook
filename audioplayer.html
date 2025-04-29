@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+}
+</style>
+<html> 
+<body> 
+
+<audio id="myAudio" onPlay="audioVolumeIn(this);" controls loop>
+  <source src="https://static.wixstatic.com/mp3/0b697c_1c197c72294a4dafbe2e2fe0c496277a.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myAudio").loop;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+  <script>
+        function audioVolumeIn(q){
+       if(q.volume){
+          var InT = 0;
+          var setVolume = 0.2; // Target volume level for new song
+          var speed = 0.005; // Rate of increase
+          q.volume = InT;
+          var eAudio = setInterval(function(){
+              InT += speed;
+              q.volume = InT.toFixed(1);
+              if(InT.toFixed(1) >= setVolume){
+                 clearInterval(eAudio);
+                 //alert('clearInterval eAudio'+ InT.toFixed(1));
+              };
+          },50);
+       };
+   };
+   
+   function audioVolumeOut(q){
+       if(q.volume){
+          var InT = 0.4;
+          var setVolume = 0;  // Target volume level for old song 
+          var speed = 0.005;  // Rate of volume decrease
+          q.volume = InT;
+          var fAudio = setInterval(function(){
+              InT -= speed;
+              q.volume = InT.toFixed(1);
+              if(InT.toFixed(1) <= setVolume){
+                 clearInterval(fAudio);
+                 //alert('clearInterval fAudio'+ InT.toFixed(1));
+              };
+          },50);
+       };
+   };
+  </script>
+  
+</body> 
+</html>
